@@ -43,6 +43,13 @@ Cabe destacar que necesitamos la versión de escritorio para poder hacer peticio
 
 La aplicación expone las siguientes rutas:
 
+- Por defecto se crea el usuario **admin1** con la password **admin1**, para probar la inserción de datos de usuarios con contraseñas codificadas en base de datos. Se puede utilizar para pruebas si no se quiere crear un nuevo usuario.
+
+**Acceso abierto**
+- POST /auth/register - Registro en el sistema.
+- POST /auth/login - Login en el sistema.
+
+**Acceso con autenticación**
 - GET /products - Devuelve todos los productos.
 - GET /products/{ean} - Devuelve un producto por su código EAN.
 - POST /products - Añade un nuevo producto.
@@ -50,6 +57,39 @@ La aplicación expone las siguientes rutas:
 - DELETE /products/{ean} - Elimina un producto por su EAN.
 
 **Ejemplo de Peticiones en Postman**
+
+POST /auth/register
+
+- URL: http://localhost:8080/auth/register
+- Body:
+```bash
+{
+    "username": "usuario1",
+    "password": "usuario1"
+}
+```
+
+- Una vez nos hemos registrado con éxito, procedemos al login.
+
+POST /auth/login
+
+- URL: http://localhost:8080/auth/login
+- Body:
+```bash
+{
+    "username": "usuario1",
+    "password": "usuario1"
+}
+```
+- Response:
+```bash
+Bearer Token
+```
+
+- Es **FUNDAMENTAL** copiar este token dado que para las siguientes peticiones necesitamos estar autenticados y pasar en la cabecera de las mismas este token.
+```bash
+Authorization --> Bearer Token --> Pegar el token copiado.
+```
 
 GET /products:
 
