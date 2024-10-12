@@ -4,7 +4,7 @@
 
 Este proyecto es un microservicio para la gestión de productos de Mercadona, permitiendo operaciones CRUD (crear, leer, actualizar, eliminar) a través de una API REST. Los productos se identifican mediante un código EAN y la aplicación utiliza una base de datos H2 en memoria junto con migraciones Flyway para la inicialización de datos.
 
-El PSD está en el repositorio privado https://github.com/MercadonaITSeleccion/Ismael_Heluani al que hay que solicitar acceso.
+El PDF está en el repositorio privado https://github.com/MercadonaITSeleccion/Ismael_Heluani al que hay que solicitar acceso.
 
 ## Requisitos
 
