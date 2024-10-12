@@ -1,5 +1,6 @@
 package com.mercadona.interview.service;
 
+import com.mercadona.interview.dto.ProductDTO;
 import com.mercadona.interview.exception.ProductNotFoundException;
 import com.mercadona.interview.model.Product;
 import com.mercadona.interview.repository.ProductRepository;
@@ -10,6 +11,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 public class ProductService {
@@ -46,5 +49,26 @@ public class ProductService {
         Product product = productRepository.findByEan(ean)
                 .orElseThrow(() -> new ProductNotFoundException("Producto con EAN " + ean + " no encontrado."));
         productRepository.delete(product);
+    }
+
+    public List<ProductDTO> getAllProductsAsDTO() {
+        List<Product> products = productRepository.findAll();
+        return products.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public ProductDTO getProductByEanAsDTO(String ean) throws ProductNotFoundException {
+        Product product = productRepository.findByEan(ean)
+                .orElseThrow(() -> new ProductNotFoundException("Producto no encontrado para el EAN: " + ean));
+        return convertToDTO(product);
+    }
+
+    private ProductDTO convertToDTO(Product product) {
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setEan(product.getEan());
+        productDTO.setName(product.getName());
+        productDTO.setProvider(product.getProvider());
+        return productDTO;
     }
 }

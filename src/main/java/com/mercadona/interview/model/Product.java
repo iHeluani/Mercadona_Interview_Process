@@ -40,22 +40,22 @@ public class Product {
       case '3':
       case '4':
       case '5':
-        destination = "Mercadona Spain";
+        destination = "Mercadona España";
         break;
       case '6':
         destination = "Mercadona Portugal";
         break;
       case '8':
-        destination = "Warehouses";
+        destination = "Almacenes";
         break;
       case '9':
-        destination = "Mercadona Offices";
+        destination = "Oficinas Mercadona";
         break;
       case '0':
         destination = "Colmenas";
         break;
       default:
-        destination = "Unknown";
+        destination = "Desconocido";
         break;
     }
   }
