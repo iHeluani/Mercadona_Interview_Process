@@ -1,15 +1,14 @@
-package com.mercadona.Interview.Service;
+package com.mercadona.interview.Service;
 
-import com.mercadona.Interview.Exception.ProductNotFoundException;
-import com.mercadona.Interview.Model.Product;
-import com.mercadona.Interview.Repository.ProductRepository;
+import com.mercadona.interview.Exception.ProductNotFoundException;
+import com.mercadona.interview.Model.Product;
+import com.mercadona.interview.Repository.ProductRepository;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {

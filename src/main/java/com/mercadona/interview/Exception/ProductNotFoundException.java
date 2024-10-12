@@ -1,4 +1,4 @@
-package com.mercadona.Interview.Exception;
+package com.mercadona.interview.Exception;
 
 public class ProductNotFoundException extends RuntimeException {
   public ProductNotFoundException(String message) {

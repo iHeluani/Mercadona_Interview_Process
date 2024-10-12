@@ -1,6 +1,6 @@
-package com.mercadona.Interview.Repository;
+package com.mercadona.interview.Repository;
 
-import com.mercadona.Interview.Model.Product;
+import com.mercadona.interview.Model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

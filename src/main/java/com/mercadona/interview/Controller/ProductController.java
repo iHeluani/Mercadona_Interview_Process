@@ -1,8 +1,8 @@
-package com.mercadona.Interview.Controller;
+package com.mercadona.interview.Controller;
 
-import com.mercadona.Interview.Exception.ProductNotFoundException;
-import com.mercadona.Interview.Model.Product;
-import com.mercadona.Interview.Service.ProductService;
+import com.mercadona.interview.Exception.ProductNotFoundException;
+import com.mercadona.interview.Model.Product;
+import com.mercadona.interview.Service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/products")
 public class ProductController {
 
   private final ProductService productService;
@@ -21,8 +21,12 @@ public class ProductController {
 
   @GetMapping("/{ean}")
   public ResponseEntity<Product> getProductByEan(@PathVariable String ean) {
-    Product product = productService.getProductByEan(ean);
-    return ResponseEntity.ok(product);
+    try {
+      Product product = productService.getProductByEan(ean);
+      return ResponseEntity.ok(product);
+    } catch (ProductNotFoundException ex) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
   }
 
   @GetMapping
@@ -39,8 +43,12 @@ public class ProductController {
 
   @PutMapping("/{id}")
   public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
-    Product updatedProduct = productService.updateProduct(id, productDetails);
-    return ResponseEntity.ok(updatedProduct);
+    try {
+      Product updatedProduct = productService.updateProduct(id, productDetails);
+      return ResponseEntity.ok(updatedProduct);
+    } catch (ProductNotFoundException ex) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
   }
 
   @DeleteMapping("/{ean}")

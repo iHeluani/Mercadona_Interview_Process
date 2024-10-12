@@ -1,4 +1,4 @@
-package com.mercadona.Interview.Model;
+package com.mercadona.interview.Model;
 
 import lombok.Data;
 

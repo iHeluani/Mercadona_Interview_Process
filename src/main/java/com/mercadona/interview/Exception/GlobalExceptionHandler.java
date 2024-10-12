@@ -1,4 +1,4 @@
-package com.mercadona.Interview.Exception;
+package com.mercadona.interview.Exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
