@@ -190,6 +190,7 @@ src/
 │   │   └── com.mercadona.interview/
 │   │       ├── config/           # Configuraciones de seguridad y base de datos
 │   │       ├── controller/       # Controladores REST
+│   │       ├── dto/              # DTO
 │   │       ├── exception/        # Excepciones personalizadas
 │   │       ├── model/            # Modelos de datos
 │   │       ├── repository/       # Repositorios JPA
