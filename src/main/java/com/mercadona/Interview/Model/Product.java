@@ -6,13 +6,12 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.checkerframework.common.aliasing.qual.Unique;
 
 @Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor // Este generará un constructor con todos los argumentos
-@Table(name = "products")
+@AllArgsConstructor
+@Table(name = "products", uniqueConstraints = @UniqueConstraint(columnNames = "ean"))
 public class Product {
 
   @Id
@@ -20,13 +19,13 @@ public class Product {
   private Long id;
 
   @NotBlank(message = "EAN cannot be blank")
-  @Unique
   @Pattern(regexp = "\\d{13}", message = "EAN must be a 13-digit number")
   private String ean;
 
   @NotBlank(message = "Product name cannot be blank")
   private String name;
 
+  @NotBlank(message = "Provider cannot be blank")
   private String provider;
 
   @Transient
