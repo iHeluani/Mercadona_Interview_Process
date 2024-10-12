@@ -36,16 +36,14 @@ public class JWTRequestFilter extends OncePerRequestFilter {
         String username = null;
         String jwt = null;
 
-        // Verifica si el encabezado contiene el token
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
-            username = jwtUtils.extractUsername(jwt); // Método para extraer el username del token
+            username = jwtUtils.extractUsername(jwt);
         }
 
-        // Valida el token y establece el contexto de seguridad
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            if (jwtUtils.validateToken(jwt, username)) { // Método para validar el token
+            if (jwtUtils.validateToken(jwt, username)) {
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
