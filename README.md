@@ -8,7 +8,7 @@ El PDF está en el repositorio privado https://github.com/MercadonaITSeleccion/I
 
 ## Requisitos
 
-- **Java 8 o superior**
+- **Java 17 o superior**
 - **Maven**
 - **Cualquier IDE** (IntelliJ IDEA, Eclipse, VS Code, etc.)
 - **Postman** (para probar las API REST)
