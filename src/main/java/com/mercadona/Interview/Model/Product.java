@@ -1,0 +1,63 @@
+package com.mercadona.Interview.Model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.checkerframework.common.aliasing.qual.Unique;
+
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor // Este generará un constructor con todos los argumentos
+@Table(name = "products")
+public class Product {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @NotBlank(message = "EAN cannot be blank")
+  @Unique
+  @Pattern(regexp = "\\d{13}", message = "EAN must be a 13-digit number")
+  private String ean;
+
+  @NotBlank(message = "Product name cannot be blank")
+  private String name;
+
+  private String provider;
+
+  @Transient
+  private String destination;
+
+  @PostLoad
+  public void determineDestination() {
+    char lastDigit = ean.charAt(12);
+    switch (lastDigit) {
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+        destination = "Mercadona Spain";
+        break;
+      case '6':
+        destination = "Mercadona Portugal";
+        break;
+      case '8':
+        destination = "Warehouses";
+        break;
+      case '9':
+        destination = "Mercadona Offices";
+        break;
+      case '0':
+        destination = "Colmenas";
+        break;
+      default:
+        destination = "Unknown";
+        break;
+    }
+  }
+}
