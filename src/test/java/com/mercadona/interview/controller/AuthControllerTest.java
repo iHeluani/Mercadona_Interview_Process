@@ -59,7 +59,7 @@ class AuthControllerTest {
         ResponseEntity<String> response = authController.authenticateUser(loginRequest);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(mockedToken, response.getBody()); // Ahora debería ser igual al token simulado
+        assertEquals(mockedToken, response.getBody());
     }
 
 

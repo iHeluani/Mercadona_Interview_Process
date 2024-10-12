@@ -11,7 +11,7 @@ public class PasswordEncoder {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Introduce la contraseña a codificar: ");
-        String rawPassword = scanner.nextLine(); // Leer la contraseña en texto plano
+        String rawPassword = scanner.nextLine();
         String encodedPassword = passwordEncoder.encode(rawPassword);
 
         System.out.println("Contraseña codificada: " + encodedPassword);

@@ -36,7 +36,6 @@ public class ProductController {
     @GetMapping("/{ean}")
     public ResponseEntity<?> getProductByEan(@PathVariable @NotBlank @Parameter(description = "EAN del producto") String ean) {
         try {
-            // Obtener el producto como DTO
             ProductDTO productDTO = productService.getProductByEanAsDTO(ean);
             return ResponseEntity.ok(productDTO);
         } catch (ProductNotFoundException ex) {
@@ -48,7 +47,6 @@ public class ProductController {
     @ApiResponse(responseCode = "200", description = "Lista de productos")
     @GetMapping
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        // Obtener la lista de productos del servicio en formato DTO
         List<ProductDTO> products = productService.getAllProductsAsDTO();
         return ResponseEntity.ok(products);
     }
@@ -60,7 +58,6 @@ public class ProductController {
     })
     @PostMapping
     public ResponseEntity<?> addProduct(@RequestBody Product productDTO) {
-        // Convertir ProductDTO a Product
         Product product = new Product();
         product.setEan(productDTO.getEan());
         product.setName(productDTO.getName());
