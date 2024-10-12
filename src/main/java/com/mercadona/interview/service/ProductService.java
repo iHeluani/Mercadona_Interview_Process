@@ -3,21 +3,18 @@ package com.mercadona.interview.service;
 import com.mercadona.interview.exception.ProductNotFoundException;
 import com.mercadona.interview.model.Product;
 import com.mercadona.interview.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@RequiredArgsConstructor
 @Service
 public class ProductService {
 
     private final ProductRepository productRepository;
-
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     @Cacheable(value = "products", key = "#ean")
     public Product getProductByEan(String ean) {
