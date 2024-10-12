@@ -1,4 +1,4 @@
-package com.mercadona.interview.Utils;
+package com.mercadona.interview.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;

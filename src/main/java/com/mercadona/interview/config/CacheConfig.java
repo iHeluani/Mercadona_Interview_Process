@@ -1,4 +1,4 @@
-package com.mercadona.interview.Config;
+package com.mercadona.interview.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.cache.annotation.EnableCaching;

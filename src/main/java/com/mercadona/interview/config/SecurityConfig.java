@@ -1,4 +1,4 @@
-package com.mercadona.interview.Config;
+package com.mercadona.interview.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

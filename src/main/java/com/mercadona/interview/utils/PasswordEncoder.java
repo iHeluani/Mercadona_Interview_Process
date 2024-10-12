@@ -1,4 +1,4 @@
-package com.mercadona.interview.Utils;
+package com.mercadona.interview.utils;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

@@ -1,8 +1,8 @@
-package com.mercadona.interview.Controller;
+package com.mercadona.interview.controller;
 
-import com.mercadona.interview.Model.User;
-import com.mercadona.interview.Utils.JWTUtils;
-import com.mercadona.interview.Service.UserDetailsServiceImpl;
+import com.mercadona.interview.model.User;
+import com.mercadona.interview.utils.JWTUtils;
+import com.mercadona.interview.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

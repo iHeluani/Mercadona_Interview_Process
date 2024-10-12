@@ -1,6 +1,6 @@
-package com.mercadona.interview.Repository;
+package com.mercadona.interview.repository;
 
-import com.mercadona.interview.Model.User;
+import com.mercadona.interview.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

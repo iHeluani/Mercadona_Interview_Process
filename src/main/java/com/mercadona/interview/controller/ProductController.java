@@ -1,8 +1,8 @@
-package com.mercadona.interview.Controller;
+package com.mercadona.interview.controller;
 
-import com.mercadona.interview.Exception.ProductNotFoundException;
-import com.mercadona.interview.Model.Product;
-import com.mercadona.interview.Service.ProductService;
+import com.mercadona.interview.exception.ProductNotFoundException;
+import com.mercadona.interview.model.Product;
+import com.mercadona.interview.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

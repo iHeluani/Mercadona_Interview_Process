@@ -1,4 +1,4 @@
-package com.mercadona.interview.Model;
+package com.mercadona.interview.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

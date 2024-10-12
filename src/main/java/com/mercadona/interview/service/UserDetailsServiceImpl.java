@@ -1,8 +1,8 @@
-package com.mercadona.interview.Service;
+package com.mercadona.interview.service;
 
-import com.mercadona.interview.Model.User;
-import com.mercadona.interview.Model.UserDetailsImpl;
-import com.mercadona.interview.Repository.UserRepository;
+import com.mercadona.interview.model.User;
+import com.mercadona.interview.model.UserDetailsImpl;
+import com.mercadona.interview.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

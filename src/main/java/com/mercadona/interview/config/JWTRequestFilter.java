@@ -1,6 +1,6 @@
-package com.mercadona.interview.Config;
+package com.mercadona.interview.config;
 
-import com.mercadona.interview.Utils.JWTUtils;
+import com.mercadona.interview.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
