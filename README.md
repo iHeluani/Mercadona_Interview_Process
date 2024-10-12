@@ -28,7 +28,7 @@ No es necesario realizar configuraciones adicionales si se utilizan las dependen
 
 ### 3. Compilar y Ejecutar el Proyecto
 
-IMPORTANTE: Si obtienes errores de versionados recuerdo de nuevo que estamos trabajando con Java 17 o superior y Spring Boot 3.3.4, por lo que habría que cambiar tu configuración si no la tienes así establecida para poder probar este proyecto.
+**IMPORTANTE**: Si obtienes errores de versionados recuerdo de nuevo que estamos trabajando con Java 17 o superior y Spring Boot 3.3.4, por lo que habría que cambiar tu configuración si no la tienes así establecida para poder probar este proyecto.
 
 Puedes compilar el proyecto utilizando Maven desde la línea de comandos, colocándote en el directorio del proyecto:
 ```bash
