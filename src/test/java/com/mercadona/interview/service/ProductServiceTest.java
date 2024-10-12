@@ -34,7 +34,6 @@ class ProductServiceTest {
         product.setId(1L);
         product.setEan("1234567890123");
         product.setName("Product Test");
-        // ...set other fields
     }
 
     @Test

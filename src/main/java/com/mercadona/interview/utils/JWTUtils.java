@@ -13,7 +13,7 @@ import java.util.Map;
 @Component
 public class JWTUtils {
 
-    // En un caso real tenemos que utilizar un gestor para estas claves y no pasarlas directamente.
+    // IMPORTANTE: En un caso real tenemos que utilizar un gestor para estas claves y no pasarlas directamente.
     // Por ejemplo --> AWS Secrets Manager. En el caso de este ejercicio lo dejaremos como está ya que se
     // va a probar en un entorno local.
     private final String SECRET_KEY = "m3rC4d0n41nt3rV13W2o24+";
@@ -56,7 +56,6 @@ public class JWTUtils {
     public boolean validateToken(String token, String username) {
         final String extractedUsername = extractUsername(token);
         boolean isValid = (extractedUsername.equals(username) && !isTokenExpired(token));
-        System.out.println("Token valid: " + isValid); // Log de validación
         return isValid;
     }
 }

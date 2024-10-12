@@ -1,8 +1,8 @@
 package com.mercadona.interview.controller;
 
 import com.mercadona.interview.model.User;
-import com.mercadona.interview.model.UserDetailsImpl;
-import com.mercadona.interview.service.UserDetailsServiceImpl;
+import com.mercadona.interview.model.UserLoginDetails;
+import com.mercadona.interview.service.UserLoginDetailsService;
 import com.mercadona.interview.utils.JWTUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ class AuthControllerTest {
     private AuthenticationManager authenticationManager;
 
     @Mock
-    private UserDetailsServiceImpl userDetailsService;
+    private UserLoginDetailsService userDetailsService;
 
     @Mock
     private JWTUtils jwtUtils;
@@ -50,11 +50,9 @@ class AuthControllerTest {
         loginRequest.setUsername("testUser");
         loginRequest.setPassword("testPassword");
 
-        // Configurar el comportamiento simulado del AuthenticationManager
         Authentication authentication = mock(Authentication.class);
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(authentication);
 
-        // Simular la generación de token
         String mockedToken = "mockedToken";
         when(jwtUtils.generateToken(authentication.getName())).thenReturn(mockedToken);
 
@@ -79,12 +77,11 @@ class AuthControllerTest {
 
     @Test
     void testRegisterUser_UserAlreadyExists() {
-        User existingUser = new User(); // Crea una instancia de User
+        User existingUser = new User();
         existingUser.setUsername(user.getUsername());
-        existingUser.setPassword("somePassword"); // Establece la contraseña y otros campos necesarios
+        existingUser.setPassword("somePassword");
 
-        // Simula que el usuario ya existe
-        when(userDetailsService.loadUserByUsername(user.getUsername())).thenReturn(new UserDetailsImpl(existingUser));
+        when(userDetailsService.loadUserByUsername(user.getUsername())).thenReturn(new UserLoginDetails(existingUser));
 
         ResponseEntity<String> response = authController.registerUser(user);
 

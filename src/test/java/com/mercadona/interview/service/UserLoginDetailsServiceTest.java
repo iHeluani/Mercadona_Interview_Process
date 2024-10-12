@@ -1,7 +1,6 @@
 package com.mercadona.interview.service;
 
 import com.mercadona.interview.model.User;
-import com.mercadona.interview.model.UserDetailsImpl;
 import com.mercadona.interview.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,10 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class UserDetailsServiceImplTest {
+class UserLoginDetailsServiceTest {
 
     @InjectMocks
-    private UserDetailsServiceImpl userDetailsService;
+    private UserLoginDetailsService userDetailsService;
 
     @Mock
     private UserRepository userRepository;

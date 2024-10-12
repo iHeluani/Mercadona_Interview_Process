@@ -35,17 +35,16 @@ class ProductControllerTest {
         product = new Product();
         product.setEan("1234567890123");
         product.setName("Product Test");
-        // ... set other fields as needed
     }
 
     @Test
     void testGetProductByEan_Success() {
         when(productService.getProductByEan(product.getEan())).thenReturn(product);
 
-        ResponseEntity<Product> response = productController.getProductByEan(product.getEan());
+        ResponseEntity<?> response = productController.getProductByEan(product.getEan());
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(product.getEan(), response.getBody().getEan());
+        assertEquals(product, response.getBody());
         verify(productService, times(1)).getProductByEan(product.getEan());
     }
 
@@ -53,10 +52,10 @@ class ProductControllerTest {
     void testGetProductByEan_NotFound() {
         when(productService.getProductByEan(anyString())).thenThrow(new ProductNotFoundException("Producto no encontrado"));
 
-        ResponseEntity<Product> response = productController.getProductByEan("invalid-ean");
+        ResponseEntity<?> response = productController.getProductByEan("invalid-ean");
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertNull(response.getBody());
+        assertEquals("Producto no encontrado para el EAN: invalid-ean", response.getBody());
         verify(productService, times(1)).getProductByEan("invalid-ean");
     }
 
@@ -77,41 +76,43 @@ class ProductControllerTest {
     void testAddProduct() {
         when(productService.addProduct(any(Product.class))).thenReturn(product);
 
-        ResponseEntity<Product> response = productController.addProduct(product);
+        ResponseEntity<?> response = productController.addProduct(product);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(product.getEan(), response.getBody().getEan());
+        assertEquals("Producto creado con éxito: " + product.getEan(), response.getBody());
         verify(productService, times(1)).addProduct(product);
     }
 
     @Test
     void testUpdateProduct_Success() {
-        when(productService.updateProduct(any(Long.class), any(Product.class))).thenReturn(product);
+        when(productService.getProductByEan(product.getEan())).thenReturn(product);
+        when(productService.addProduct(any(Product.class))).thenReturn(product);
 
-        ResponseEntity<Product> response = productController.updateProduct(1L, product);
+        ResponseEntity<?> response = productController.updateProduct(product.getEan(), product);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(product.getEan(), response.getBody().getEan());
-        verify(productService, times(1)).updateProduct(1L, product);
+        assertEquals("Producto actualizado con éxito: " + product.getEan(), response.getBody());
+        verify(productService, times(1)).getProductByEan(product.getEan());
+        verify(productService, times(1)).addProduct(product);
     }
 
     @Test
     void testUpdateProduct_NotFound() {
-        when(productService.updateProduct(any(Long.class), any(Product.class)))
-                .thenThrow(new ProductNotFoundException("Producto no encontrado"));
+        when(productService.getProductByEan(anyString())).thenThrow(new ProductNotFoundException("Producto no encontrado"));
 
-        ResponseEntity<Product> response = productController.updateProduct(1L, product);
+        ResponseEntity<?> response = productController.getProductByEan("invalid-ean");
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertNull(response.getBody());
-        verify(productService, times(1)).updateProduct(1L, product);
+        assertEquals("Producto no encontrado para el EAN: invalid-ean", response.getBody());
+        verify(productService, times(1)).getProductByEan("invalid-ean");
     }
 
     @Test
-    void testDeleteProduct() {
-        ResponseEntity<Void> response = productController.deleteProduct(product.getEan());
+    void testDeleteProduct_Success() {
+        ResponseEntity<String> response = productController.deleteProduct(product.getEan());
 
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("Producto eliminado con éxito: " + product.getEan(), response.getBody());
         verify(productService, times(1)).deleteProduct(product.getEan());
     }
 }

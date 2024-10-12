@@ -2,7 +2,7 @@ package com.mercadona.interview.controller;
 
 import com.mercadona.interview.model.User;
 import com.mercadona.interview.utils.JWTUtils;
-import com.mercadona.interview.service.UserDetailsServiceImpl;
+import com.mercadona.interview.service.UserLoginDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class AuthController {
   private AuthenticationManager authenticationManager;
 
   @Autowired
-  private UserDetailsServiceImpl userDetailsService;
+  private UserLoginDetailsService userDetailsService;
 
   @Autowired
   private JWTUtils jwtUtils;
@@ -40,7 +40,7 @@ public class AuthController {
       userDetailsService.loadUserByUsername(user.getUsername());
       return ResponseEntity.status(HttpStatus.CONFLICT).body("El usuario ya existe.");
     } catch (UsernameNotFoundException e) {
-      userDetailsService.save(user); // Guarda el nuevo usuario
+      userDetailsService.save(user);
       return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado con éxito.");
     }
   }

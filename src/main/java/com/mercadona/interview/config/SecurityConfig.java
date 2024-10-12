@@ -16,37 +16,36 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
     @Autowired
-    private JWTRequestFilter jwtRequestFilter; // Inyecta tu filtro
+    private JWTRequestFilter jwtRequestFilter;
 
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-      http
-              .csrf(AbstractHttpConfigurer::disable)
-              .authorizeHttpRequests(authorize -> authorize
-                      .requestMatchers("/auth/**", "/h2-console/**").permitAll()
-                      .requestMatchers("/products/**").authenticated()
-                      .anyRequest().authenticated()
-              )
-              .headers(headers -> headers
-                      .frameOptions().sameOrigin()
-              )
-              .sessionManagement(session -> session
-                      .sessionCreationPolicy(SessionCreationPolicy.STATELESS)); // Esto es importante para JWT
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/auth/**", "/h2-console/**").permitAll()
+                        .requestMatchers("/products/**").authenticated()
+                        .anyRequest().authenticated()
+                )
+                .headers(headers -> headers
+                        .frameOptions().sameOrigin()
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-      http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-      return http.build();
-  }
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+    }
 
     @Bean
     public AuthenticationManager authManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder =
                 http.getSharedObject(AuthenticationManagerBuilder.class);
-        // Configura aquí el UserDetailsService y la contraseña encriptada si es necesario
         return authenticationManagerBuilder.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Utilizar BCrypt para codificar contraseñas
+        return new BCryptPasswordEncoder();
     }
 }

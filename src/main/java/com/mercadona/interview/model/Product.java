@@ -28,7 +28,7 @@ public class Product {
   @NotBlank(message = "Provider cannot be blank")
   private String provider;
 
-  @Transient
+  @NotBlank(message = "Destination cannot be blank")
   private String destination;
 
   @PostLoad
