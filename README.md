@@ -39,7 +39,13 @@ O, si prefieres usar un IDE:
 - Importa el proyecto como un proyecto Maven.
 - Ejecuta la clase principal (MercadonaInterviewProcess.java) que contiene el método main.
 
-### 4. Probar el Servicio con Postman
+### 4. Probar el Servicio con Postman o Swagger UI
+
+- Swagger UI
+
+Una vez el proyecto esté arrancado, tras realizar el paso 3, acceder a la URL http://localhost:8080/swagger-ui/index.html para probar directamente los distintos endpoints sin utilizar software adicional.
+
+- Postman
 
 Cabe destacar que necesitamos la versión de escritorio para poder hacer peticiones a **localhost:8080**, como es nuestro caso.
 
