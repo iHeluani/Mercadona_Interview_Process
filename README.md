@@ -4,6 +4,8 @@
 
 Este proyecto es un microservicio para la gestión de productos de Mercadona, permitiendo operaciones CRUD (crear, leer, actualizar, eliminar) a través de una API REST. Los productos se identifican mediante un código EAN y la aplicación utiliza una base de datos H2 en memoria junto con migraciones Flyway para la inicialización de datos.
 
+El PSD está en el repositorio privado https://github.com/MercadonaITSeleccion/Ismael_Heluani al que hay que solicitar acceso.
+
 ## Requisitos
 
 - **Java 8 o superior**
@@ -56,6 +58,7 @@ La aplicación expone las siguientes rutas:
 - PUT /products/{ean} - Actualiza un producto existente.
 - DELETE /products/{ean} - Elimina un producto por su EAN.
 
+
 **Ejemplo de Peticiones en Postman**
 
 POST /auth/register
@@ -70,6 +73,7 @@ POST /auth/register
 ```
 
 - Una vez nos hemos registrado con éxito, procedemos al login.
+
 
 POST /auth/login
 
@@ -91,6 +95,7 @@ Bearer Token
 Authorization --> Bearer Token --> Pegar el token copiado.
 ```
 
+
 GET /products:
 
 - URL: http://localhost:8080/products
@@ -98,6 +103,7 @@ GET /products:
 ```bash
 JSON con toda la información
 ```
+
 
 GET /products/{ean}:
 
@@ -111,6 +117,7 @@ GET /products/{ean}:
   "destination": "España"
 }
 ```
+
 
 POST /products:
 
@@ -126,6 +133,7 @@ POST /products:
 ```
 - Response: "Producto creado con éxito: 1234567890999"
 
+
 PUT /products/{ean}:
 
 - URL: http://localhost:8080/products/1234567890999
@@ -138,6 +146,7 @@ PUT /products/{ean}:
 }
 ```
 - Response: "Producto actualizado con éxito: 1234567890999"
+
 
 DELETE /products/{ean}:
 
