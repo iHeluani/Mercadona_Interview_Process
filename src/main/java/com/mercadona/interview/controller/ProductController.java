@@ -3,6 +3,8 @@ package com.mercadona.interview.controller;
 import com.mercadona.interview.exception.ProductNotFoundException;
 import com.mercadona.interview.model.Product;
 import com.mercadona.interview.service.ProductService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,7 @@ public class ProductController {
     }
 
     @GetMapping("/{ean}")
-    public ResponseEntity<?> getProductByEan(@PathVariable String ean) {
+    public ResponseEntity<?> getProductByEan(@PathVariable @NotBlank String ean) {
         try {
             Product product = productService.getProductByEan(ean);
             return ResponseEntity.ok(product);
@@ -37,13 +39,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addProduct(@RequestBody Product product) {
+    public ResponseEntity<?> addProduct(@RequestBody @Valid Product product) {
         Product createdProduct = productService.addProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body("Producto creado con éxito: " + createdProduct.getEan());
     }
 
     @PutMapping("/{ean}")
-    public ResponseEntity<?> updateProduct(@PathVariable String ean, @RequestBody Product productDetails) {
+    public ResponseEntity<?> updateProduct(@PathVariable @NotBlank String ean, @RequestBody @Valid Product productDetails) {
         Optional<Product> optionalProduct = Optional.ofNullable(productService.getProductByEan(ean));
         if (!optionalProduct.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Producto no encontrado.");
@@ -60,7 +62,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{ean}")
-    public ResponseEntity<String> deleteProduct(@PathVariable String ean) {
+    public ResponseEntity<String> deleteProduct(@PathVariable @NotBlank String ean) {
         productService.deleteProduct(ean);
         return ResponseEntity.ok("Producto eliminado con éxito: " + ean);
     }
